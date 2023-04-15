@@ -1,6 +1,10 @@
 import styled from 'styled-components'
 
-export const CheckoutContainer = styled.div`
+interface UserInfoHeaderProps {
+  variant: 'purple' | 'yellow'
+}
+
+export const CheckoutContainer = styled.main`
   display: flex;
   align-items: flex-start;
   gap: 2rem;
@@ -16,6 +20,8 @@ export const CheckoutContainer = styled.div`
 `
 
 export const UserInfoContainer = styled.div`
+  flex: 57.14%;
+
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
@@ -23,6 +29,7 @@ export const UserInfoContainer = styled.div`
   & > div {
     display: flex;
     flex-direction: column;
+    gap: 2rem;
 
     margin-top: 0.25rem;
     padding: 2.5rem;
@@ -33,7 +40,7 @@ export const UserInfoContainer = styled.div`
   }
 `
 
-export const UserInfoHeader = styled.div`
+export const UserInfoHeader = styled.div<UserInfoHeaderProps>`
   display: flex;
   align-items: flex-start;
   justify-content: left;
@@ -53,11 +60,22 @@ export const UserInfoHeader = styled.div`
       color: ${(props) => props.theme['gray-700']};
     }
   }
+
+  svg {
+    color: ${(props) => {
+      if (props.variant === 'purple') {
+        return props.theme['purple-500']
+      } else {
+        return props.theme['yellow-500']
+      }
+    }};
+  }
 `
 
 export const UserInfoForm = styled.form`
-  margin-top: 2rem;
+  /* margin-top: 2rem; */
 
+  /*JEITO LEGAL MAS NÃO TÃO RESPONSIVO */
   display: grid;
   grid-template-areas:
     'cep null null'
@@ -68,15 +86,6 @@ export const UserInfoForm = styled.form`
   grid-template-rows: 1fr 1fr 1fr 1fr;
   grid-row-gap: 1rem;
   grid-column-gap: 0.75rem;
-
-  input {
-    border: 1px solid ${(props) => props.theme['gray-400']};
-    border-radius: 4px;
-
-    padding: 0.75rem;
-
-    background: ${(props) => props.theme['gray-300']};
-  }
 
   .cepInput {
     grid-area: cep;
@@ -105,18 +114,190 @@ export const UserInfoForm = styled.form`
   .ufInput {
     grid-area: uf;
   }
+
+  /* .cepInput {
+    width: 36%;
+  }
+
+  .streetInput {
+    width: 100%;
+  }
+
+  .numberInput {
+    width: 36%;
+  }
+
+  .complementInput {
+    width: 64%;
+  }
+
+  .neighborhoodInput {
+    width: 36%;
+  }
+
+  .cityInput {
+    width: 53%;
+  }
+
+  .ufInput {
+    width: 11%;
+  } */
+
+  input {
+    border: 1px solid ${(props) => props.theme['gray-400']};
+    border-radius: 4px;
+    width: 100%;
+
+    /* margin-bottom: 1rem; */
+
+    padding: 0.75rem;
+
+    background: ${(props) => props.theme['gray-300']};
+  }
 `
 
-export const OrderInfoContainer = styled.div`
-  div {
+export const PaymentOptions = styled.div`
+  /* margin-top: 2rem; */
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+
+  input[type='radio'] {
+    display: none;
+  }
+
+  label {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+
+    border-radius: 6px;
+    padding: 1rem;
+
+    font-size: 0.75rem;
+
+    min-width: 11.25rem;
+
+    background: ${(props) => props.theme['gray-400']};
+    color: ${(props) => props.theme['gray-700']};
+
+    border: 1px solid transparent;
+
+    svg {
+      color: ${(props) => props.theme['purple-500']};
+    }
+  }
+
+  input[type='radio']:checked + label {
+    background: ${(props) => props.theme['purple-100']};
+    border: 1px solid ${(props) => props.theme['purple-500']};
+  }
+`
+
+export const OrderItemsContainer = styled.div`
+  flex: 40%;
+
+  & > div {
     margin-top: 1rem;
     border-radius: 6px 36px;
     padding: 2.5rem;
 
     background: ${(props) => props.theme['gray-200']};
+
+    > button {
+      border: 0;
+      border-radius: 6px;
+
+      line-height: 1.6;
+
+      width: 100%;
+      margin-top: 2rem;
+      padding: 0.75rem;
+      font-size: 0.875rem;
+
+      color: ${(props) => props.theme.white};
+      background: ${(props) => props.theme['yellow-500']};
+    }
+
+    > div:not(:first-child) {
+      padding-top: 2rem;
+    }
   }
 `
 
-export const OrderItem = styled.div``
+export const OrderItem = styled.div`
+  display: flex;
+  border-bottom: 1px solid ${(props) => props.theme['gray-400']};
+  padding-bottom: 2rem;
 
-export const OrderResume = styled.div``
+  img {
+    width: 4rem;
+  }
+
+  & > span {
+    margin-left: auto;
+    white-space: nowrap;
+    font-weight: bold;
+  }
+`
+
+export const OrderInfo = styled.div`
+  margin-left: 1.25rem;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 0.5rem;
+
+  & > div {
+    display: flex;
+    gap: 0.5rem;
+  }
+
+  & > h4 {
+    display: block;
+
+    font-weight: 400;
+    font-size: 1rem;
+  }
+
+  button {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+
+    padding: 0.5rem;
+
+    color: ${(props) => props.theme['gray-700']};
+    background: ${(props) => props.theme['gray-400']};
+
+    font-size: 0.75rem;
+
+    border-radius: 6px;
+    border: 0;
+
+    svg {
+      color: ${(props) => props.theme['purple-500']};
+    }
+  }
+`
+
+export const OrderResume = styled.div`
+  display: grid;
+  justify-content: space-between;
+  grid-template-columns: auto auto;
+  grid-row-gap: 0.75rem;
+
+  strong {
+    font-size: 1.25rem;
+    color: ${(props) => props.theme['gray-800']};
+  }
+
+  > span:nth-child(even) {
+    text-align: right;
+  }
+
+  > strong:nth-child(even) {
+    text-align: right;
+  }
+`

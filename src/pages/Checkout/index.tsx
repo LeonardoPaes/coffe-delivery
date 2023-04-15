@@ -1,14 +1,26 @@
 import {
   CheckoutContainer,
-  OrderInfoContainer,
+  OrderItemsContainer,
   OrderItem,
   OrderResume,
   UserInfoContainer,
   UserInfoHeader,
   UserInfoForm,
+  PaymentOptions,
+  OrderInfo,
 } from './styles'
 
-import { MapPinLine, CurrencyDollar } from 'phosphor-react'
+import {
+  MapPinLine,
+  CurrencyDollar,
+  CreditCard,
+  Bank,
+  Money,
+  Trash,
+} from 'phosphor-react'
+
+import coffeExpresso from '../../assets/coffe-expresso.svg'
+import { NumberInput } from '../../components/NumberInput'
 
 export function Checkout() {
   return (
@@ -16,7 +28,7 @@ export function Checkout() {
       <UserInfoContainer>
         <h3>Complete seu pedido</h3>
         <div>
-          <UserInfoHeader>
+          <UserInfoHeader variant="yellow">
             <MapPinLine size={22} />
             <div>
               <title>Endereço de entrega</title>
@@ -66,24 +78,76 @@ export function Checkout() {
           </UserInfoForm>
         </div>
         <div>
-          <UserInfoHeader>
+          <UserInfoHeader variant="purple">
             <CurrencyDollar size={22} />
             <div>
               <title>Endereço de entrega</title>
               <span>
-                Informe o endereço de entrega onde deseja receber seu pedido
+                O pagamento é feito na entrega. Escolha a forma que deseja pagar
               </span>
             </div>
           </UserInfoHeader>
+          <PaymentOptions>
+            <input type="radio" name="payment" id="credit" value={'credit'} />
+            <label htmlFor="credit">
+              <CreditCard size={16} />
+              CARTÃO DE CRÉDITO
+            </label>
+            <input type="radio" name="payment" id="debit" value={'debit'} />
+            <label htmlFor="debit">
+              <Bank size={16} />
+              CARTÃO DE DÉBITO
+            </label>
+            <input type="radio" name="payment" id="money" value={'money'} />
+            <label htmlFor="money">
+              <Money size={16} />
+              DINHEIRO
+            </label>
+          </PaymentOptions>
         </div>
       </UserInfoContainer>
-      <OrderInfoContainer>
+      <OrderItemsContainer>
         <h3>Cafés selecionados</h3>
         <div>
-          <OrderItem></OrderItem>
-          <OrderResume></OrderResume>
+          <OrderItem>
+            <img src={coffeExpresso} alt="Café Expresso" />
+            <OrderInfo>
+              <h4>Expresso Tradicional</h4>
+              <div>
+                <NumberInput />
+                <button>
+                  <Trash />
+                  REMOVER
+                </button>
+              </div>
+            </OrderInfo>
+            <span>R$ 9,90</span>
+          </OrderItem>
+          <OrderItem>
+            <img src={coffeExpresso} alt="Café Expresso" />
+            <OrderInfo>
+              <h4>Expresso Tradicional</h4>
+              <div>
+                <NumberInput />
+                <button>
+                  <Trash />
+                  REMOVER
+                </button>
+              </div>
+            </OrderInfo>
+            <span>R$ 9,90</span>
+          </OrderItem>
+          <OrderResume>
+            <span>Total de itens</span>
+            <span>R$ 29,70</span>
+            <span>Entrega</span>
+            <span>R$ 3,50</span>
+            <strong>Total</strong>
+            <strong>R$ 33,20</strong>
+          </OrderResume>
+          <button>CONFIRMAR PEDIDO</button>
         </div>
-      </OrderInfoContainer>
+      </OrderItemsContainer>
     </CheckoutContainer>
   )
 }
