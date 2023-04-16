@@ -8,7 +8,7 @@ import {
 import { ShoppingCart, Timer, Package, Coffee } from 'phosphor-react'
 
 import coffeBanner from '../../assets/coffe-banner.svg'
-import { CoffeCards } from './components/CoffeCard'
+import { CoffeCards } from './components/CoffeCards'
 
 export function Home() {
   return (

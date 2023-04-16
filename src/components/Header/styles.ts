@@ -16,6 +16,10 @@ import { NavLink } from 'react-router-dom'
 //   variant: "purple" | "yellow"
 // }
 
+interface CartHeaderButtonProps {
+  cartamount: number
+}
+
 export const HeaderContainer = styled.div`
   display: flex;
   align-items: center;
@@ -44,7 +48,29 @@ export const LocationHeaderButton = styled(BaseHeaderButton)`
   color: ${(props) => props.theme['purple-500']};
 `
 
-export const CartHeaderButton = styled(BaseHeaderButton)`
+export const CartHeaderButton = styled(BaseHeaderButton)<CartHeaderButtonProps>`
   background: ${(props) => props.theme['yellow-100']};
   color: ${(props) => props.theme['yellow-500']};
+  position: relative;
+
+  :before {
+    content: '${(props) => props.cartamount}';
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 0.75rem;
+
+    width: 1.25rem;
+    height: 1.25rem;
+
+    color: ${(props) => props.theme.white};
+    background: ${(props) => props.theme['yellow-800']};
+
+    border-radius: 50%;
+
+    position: absolute;
+    right: -6.35px;
+    top: -8px;
+  }
 `

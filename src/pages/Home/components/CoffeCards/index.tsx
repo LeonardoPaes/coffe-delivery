@@ -1,10 +1,11 @@
 import { ShoppingCart } from 'phosphor-react'
 import { NumberInput } from '../../../../components/NumberInput'
-import { CartContainer, CoffeCardContainer, CoffeTags } from './styles'
+import { CoffeCardContainer, CoffeTags } from './styles'
 
 import coffeExpresso from '../../../../assets/coffe-expresso.svg'
-import { useContext } from 'react'
-import { CoffesContext } from './../../../../contexts/CoffesContex'
+import { FormEvent, useContext } from 'react'
+import { CoffesContext } from '../../../../contexts/CoffesContex'
+import { CartForm } from './../CartForm/index'
 
 interface Tag {
   id: string
@@ -36,18 +37,7 @@ export function CoffeCards() {
             </CoffeTags>
             <strong>{coffe.title}</strong>
             <span>{coffe.subTitle}</span>
-            <CartContainer>
-              <div>
-                <span>R$</span>
-                <data value={coffe.price}>{coffe.price}</data>
-              </div>
-              <div>
-                <NumberInput />
-                <button>
-                  <ShoppingCart size={22} weight="fill" />
-                </button>
-              </div>
-            </CartContainer>
+            <CartForm coffe={coffe} />
           </CoffeCardContainer>
         )
       })}

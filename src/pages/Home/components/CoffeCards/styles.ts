@@ -55,39 +55,3 @@ export const CoffeTags = styled.div`
     color: ${(props) => props.theme['yellow-800']};
   }
 `
-
-export const CartContainer = styled.div`
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-
-  margin-top: 2.125rem;
-
-  button {
-    background: ${(props) => props.theme['purple-800']};
-    color: ${(props) => props.theme.white};
-
-    width: 2.375rem;
-    height: 2.375rem;
-
-    border-radius: 6px;
-    border: 0;
-    padding: 0.5rem;
-  }
-
-  & > div {
-    font-size: 0.875rem;
-    data {
-      font-family: 'Baloo 2', sans-serif;
-      font-size: 1.5rem;
-      font-weight: 800;
-
-      padding-left: 0.25rem;
-    }
-  }
-
-  div:last-child {
-    display: flex;
-    gap: 0.5rem;
-  }
-`
