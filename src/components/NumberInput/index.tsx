@@ -1,16 +1,52 @@
 import { Minus, Plus } from 'phosphor-react'
 import { QuantityContainer } from './styles'
+import { useFormContext } from 'react-hook-form'
 
-export function NumberInput() {
+interface NumberInputProps {
+  useFormName?: 'cartQuantity' | ''
+  cartQuantity: number
+  lowerCartQuantity: () => void
+  upperCartQuantity: () => void
+  register?: (name: 'cartQuantity', options?: {}) => {}
+}
+
+export function NumberInput({
+  useFormName = '',
+  cartQuantity,
+  lowerCartQuantity,
+  upperCartQuantity,
+  register,
+}: NumberInputProps) {
+  // const { register } = useFormContext()
+
+  // const cartQuantity = watch('cartQuantity')
+
+  function handleLowerCartQuantity() {
+    lowerCartQuantity()
+  }
+
+  function handleUpperCartQuantity() {
+    upperCartQuantity()
+  }
+
   return (
     <QuantityContainer>
-      <label htmlFor="cartQuantity">
+      <button type="button" onClick={handleLowerCartQuantity}>
         <Minus />
-      </label>
-      <input type="number" name="cartQuantity" min={1} value={0} />
-      <label htmlFor="cartQuantity">
+      </button>
+      {useFormName === '' ? (
+        <input type="number" min={0} value={cartQuantity} readOnly />
+      ) : (
+        <input
+          type="number"
+          min={0}
+          {...register!(useFormName, { valueAsNumber: true })}
+        />
+      )}
+
+      <button type="button" onClick={handleUpperCartQuantity}>
         <Plus />
-      </label>
+      </button>
     </QuantityContainer>
   )
 }

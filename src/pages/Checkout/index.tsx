@@ -1,13 +1,10 @@
 import {
   CheckoutContainer,
   OrderItemsContainer,
-  OrderItem,
-  OrderResume,
   UserInfoContainer,
   UserInfoHeader,
   UserInfoForm,
   PaymentOptions,
-  OrderInfo,
 } from './styles'
 
 import {
@@ -19,8 +16,7 @@ import {
   Trash,
 } from 'phosphor-react'
 
-import coffeExpresso from '../../assets/coffe-expresso.svg'
-import { NumberInput } from '../../components/NumberInput'
+import { OrderContent } from './components/OrderContent/index'
 
 export function Checkout() {
   return (
@@ -109,42 +105,7 @@ export function Checkout() {
       <OrderItemsContainer>
         <h3>Cafés selecionados</h3>
         <div>
-          <OrderItem>
-            <img src={coffeExpresso} alt="Café Expresso" />
-            <OrderInfo>
-              <h4>Expresso Tradicional</h4>
-              <div>
-                <NumberInput />
-                <button>
-                  <Trash />
-                  REMOVER
-                </button>
-              </div>
-            </OrderInfo>
-            <span>R$ 9,90</span>
-          </OrderItem>
-          <OrderItem>
-            <img src={coffeExpresso} alt="Café Expresso" />
-            <OrderInfo>
-              <h4>Expresso Tradicional</h4>
-              <div>
-                <NumberInput />
-                <button>
-                  <Trash />
-                  REMOVER
-                </button>
-              </div>
-            </OrderInfo>
-            <span>R$ 9,90</span>
-          </OrderItem>
-          <OrderResume>
-            <span>Total de itens</span>
-            <span>R$ 29,70</span>
-            <span>Entrega</span>
-            <span>R$ 3,50</span>
-            <strong>Total</strong>
-            <strong>R$ 33,20</strong>
-          </OrderResume>
+          <OrderContent />
           <button>CONFIRMAR PEDIDO</button>
         </div>
       </OrderItemsContainer>
