@@ -31,6 +31,10 @@ export const HeaderContainer = styled.div`
     display: flex;
     gap: 0.75rem;
   }
+
+  @media (min-width: 1300px) {
+    padding: 2rem 7rem;
+  }
 `
 
 export const BaseHeaderButton = styled(NavLink)`

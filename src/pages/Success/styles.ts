@@ -10,6 +10,10 @@ export const SuccessContainer = styled.main`
   display: flex;
   flex-direction: column;
   gap: 2.5rem;
+
+  @media (min-width: 1300px) {
+    padding: 5rem 7rem;
+  }
 `
 
 export const SuccessText = styled.div`

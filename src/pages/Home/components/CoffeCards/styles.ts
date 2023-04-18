@@ -26,6 +26,8 @@ export const CoffeCardContainer = styled.div`
   }
 
   & > span {
+    flex: 1;
+
     margin-top: 0.5rem;
     font-size: 0.875rem;
     color: ${(props) => props.theme['gray-600']};

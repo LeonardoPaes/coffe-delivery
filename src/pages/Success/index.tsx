@@ -8,8 +8,25 @@ import {
 } from './styles'
 
 import checkoutBanner from '../../assets/checkout-banner.svg'
+import { useContext } from 'react'
+import { CoffesContext } from './../../contexts/CoffesContex'
 
 export function Success() {
+  const { order } = useContext(CoffesContext)
+
+  function handlePaymentMethod() {
+    switch (order.payment) {
+      case 'credit':
+        return 'Cartão de Crédito'
+
+      case 'debit':
+        return 'Cartão de Débito'
+
+      case 'money':
+        return 'Em dinheiro'
+    }
+  }
+
   return (
     <SuccessContainer>
       <SuccessText>
@@ -21,8 +38,12 @@ export function Success() {
           <InfoItem variant="purple">
             <MapPin size={32} weight="fill" />
             <div>
-              Entrega em <strong>Rua João Daniel Martinelli, 102</strong>{' '}
-              Farrapos - Porto Alegre, RS
+              Entrega em{' '}
+              <strong>
+                {order.address.street}, {order.address.number}
+              </strong>{' '}
+              {order.address.neighborhood} - {order.address.city},{' '}
+              {order.address.uf}
             </div>
           </InfoItem>
           <InfoItem variant="yellow">
@@ -36,7 +57,7 @@ export function Success() {
             <CurrencyDollar size={16} />
             <div>
               Pagamento na entrega <br />
-              <strong>Cartão de Crédito</strong>
+              <strong>{handlePaymentMethod()}</strong>
             </div>
           </InfoItem>
         </CheckoutInfo>

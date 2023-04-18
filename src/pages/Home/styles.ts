@@ -47,6 +47,10 @@ export const BannerContainer = styled.div`
     /* width: 29.75rem; */
     width: 44%;
   }
+
+  @media (min-width: 1300px) {
+    padding: 5.75rem 7rem;
+  }
 `
 
 export const AdvantagesContainer = styled.div`
@@ -115,5 +119,9 @@ export const ProductsContainer = styled.div`
     grid-row-gap: 2.5rem;
 
     padding: 3.375rem 0;
+  }
+
+  @media (max-width: 1350px) {
+    padding: 0rem 7rem;
   }
 `

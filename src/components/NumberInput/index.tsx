@@ -17,10 +17,6 @@ export function NumberInput({
   upperCartQuantity,
   register,
 }: NumberInputProps) {
-  // const { register } = useFormContext()
-
-  // const cartQuantity = watch('cartQuantity')
-
   function handleLowerCartQuantity() {
     lowerCartQuantity()
   }

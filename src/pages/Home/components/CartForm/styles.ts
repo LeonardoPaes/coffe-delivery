@@ -5,6 +5,8 @@ export const CartContainer = styled.div`
   justify-content: space-between;
   width: 100%;
 
+  flex: 0;
+
   margin-top: 2.125rem;
 
   & > div {
