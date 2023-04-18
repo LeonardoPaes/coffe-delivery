@@ -39,6 +39,6 @@ export const QuantityContainer = styled.div`
     }
 
     width: 1.5rem;
-    padding: 0.5rem;
+    padding: 0.4rem;
   }
 `

@@ -4,7 +4,7 @@ interface UserInfoHeaderProps {
   variant: 'purple' | 'yellow'
 }
 
-export const CheckoutContainer = styled.main`
+export const CheckoutContainer = styled.form`
   display: flex;
   align-items: flex-start;
   gap: 2rem;
@@ -16,6 +16,10 @@ export const CheckoutContainer = styled.main`
     font-size: 1.125rem;
 
     color: ${(props) => props.theme['gray-800']};
+  }
+
+  @media (min-width: 1300px) {
+    padding: 2.5rem 7rem;
   }
 `
 
@@ -72,7 +76,7 @@ export const UserInfoHeader = styled.div<UserInfoHeaderProps>`
   }
 `
 
-export const UserInfoForm = styled.form`
+export const UserInfoFormContainer = styled.div`
   /* margin-top: 2rem; */
 
   /*JEITO LEGAL MAS NÃO TÃO RESPONSIVO */
@@ -97,6 +101,11 @@ export const UserInfoForm = styled.form`
 
   .numberInput {
     grid-area: number;
+    ::-webkit-outer-spin-button,
+    ::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
   }
 
   .complementInput {
@@ -153,6 +162,11 @@ export const UserInfoForm = styled.form`
     padding: 0.75rem;
 
     background: ${(props) => props.theme['gray-300']};
+
+    :focus {
+      outline: 0;
+      box-shadow: 0 0 0 2px ${(props) => props.theme['yellow-800']};
+    }
   }
 `
 
@@ -161,6 +175,7 @@ export const PaymentOptions = styled.div`
   display: flex;
   flex-flow: row wrap;
   justify-content: space-between;
+  gap: 1rem;
 
   input[type='radio'] {
     display: none;
@@ -219,10 +234,29 @@ export const OrderItemsContainer = styled.div`
 
       color: ${(props) => props.theme.white};
       background: ${(props) => props.theme['yellow-500']};
+
+      :hover {
+        background: ${(props) => props.theme['yellow-800']};
+      }
     }
 
     > div:not(:first-child) {
       padding-top: 2rem;
     }
   }
+`
+
+export const NoItems = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+
+  text-align: center;
+  color: ${(props) => props.theme['gray-600']};
+`
+
+export const ErrorMessage = styled.span`
+  font-size: 0.875rem;
+  color: ${(props) => props.theme['red-500']};
 `
