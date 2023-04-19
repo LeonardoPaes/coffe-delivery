@@ -25,16 +25,19 @@ export const HeaderContainer = styled.div`
   align-items: center;
   justify-content: space-between;
 
-  padding: 2rem 10rem;
+  /* padding: 2rem 10rem; */
+  width: 100%;
+  max-width: 1120px;
+  padding: 2rem 1.5rem;
 
   nav {
     display: flex;
     gap: 0.75rem;
   }
 
-  @media (min-width: 1300px) {
+  /* @media (min-width: 1300px) {
     padding: 2rem 7rem;
-  }
+  } */
 `
 
 export const BaseHeaderButton = styled(NavLink)`

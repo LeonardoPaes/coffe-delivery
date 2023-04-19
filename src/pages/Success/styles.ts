@@ -5,15 +5,18 @@ interface InfoItemProps {
 }
 
 export const SuccessContainer = styled.main`
-  padding: 5rem 10rem;
+  /* padding: 5rem 10rem; */
+  max-width: 1120px;
+  padding: 5rem 1.5rem;
+  width: 100%;
 
   display: flex;
   flex-direction: column;
   gap: 2.5rem;
 
-  @media (min-width: 1300px) {
+  /* @media (min-width: 1300px) {
     padding: 5rem 7rem;
-  }
+  } */
 `
 
 export const SuccessText = styled.div`
