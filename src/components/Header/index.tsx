@@ -12,11 +12,12 @@ import { Link } from 'react-router-dom'
 
 export function Header() {
   const { cart } = useContext(CoffesContext)
-  const cartamount = cart
-    ? cart.reduce((accumulator, cartItem) => {
-        return accumulator + cartItem.quantity
-      }, 0)
-    : 0
+  const cartamount =
+    cart.length > 0
+      ? cart.reduce((accumulator, cartItem) => {
+          return accumulator + cartItem.quantity
+        }, 0)
+      : 0
 
   return (
     <HeaderContainer>

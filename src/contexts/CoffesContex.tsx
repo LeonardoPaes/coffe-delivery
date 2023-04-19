@@ -14,12 +14,26 @@ import coffeHavaiano from '../assets/coffe-havaiano.svg'
 import coffeArabe from '../assets/coffe-arabe.svg'
 import coffeIrlandes from '../assets/coffe-irlandes.svg'
 
-import { createContext, ReactNode, useState } from 'react'
+import {
+  createContext,
+  ReactNode,
+  useEffect,
+  useReducer,
+  useState,
+} from 'react'
 import { Coffe } from '../pages/Home/components/CoffeCards'
 import { CartItem } from '../pages/Home/components/CartForm'
 import { Address } from '../pages/Checkout'
+import { coffesReducer } from './../reducers/coffes/reducer'
+import {
+  addToCartAction,
+  createOrderAction,
+  decreaseCoffeCartQuantityAction,
+  increaseCoffeCartQuantityAction,
+  removeCoffeFromCartAction,
+} from '../reducers/coffes/actions'
 
-interface Order {
+export interface Order {
   address: Address
   orderItems: CartItem[]
   payment: string
@@ -45,6 +59,25 @@ export const CoffesContext = createContext({} as CoffesContextType)
 export function CoffesContextsProvider({
   children,
 }: CoffesContextProviderProps) {
+  const [coffesState, dispatch] = useReducer(
+    coffesReducer,
+    {
+      cart: [],
+      order: {} as Order,
+    },
+    (initalState) => {
+      const storedStateAsJSON = localStorage.getItem(
+        '@coffe-delivery:coffes-state-1.0.0',
+      )
+
+      if (storedStateAsJSON) {
+        return JSON.parse(storedStateAsJSON)
+      }
+
+      return initalState
+    },
+  )
+
   const [coffes, setCoffes] = useState<Coffe[]>([
     {
       id: '1',
@@ -191,64 +224,90 @@ export function CoffesContextsProvider({
     },
   ])
 
-  const [cart, setCart] = useState<CartItem[]>([])
+  const { cart, order } = coffesState
 
-  const [order, setOrder] = useState<Order>({} as Order)
+  useEffect(() => {
+    const stateJSON = JSON.stringify(coffesState)
+
+    localStorage.setItem('@coffe-delivery:coffes-state-1.0.0', stateJSON)
+  }, [coffesState])
+
+  // const [cart, setCart] = useState<CartItem[]>([])
+
+  // const [order, setOrder] = useState<Order>({} as Order)
 
   function addToCart(id: string, quantity: number) {
-    const cartIndex = cart.findIndex((item) => item.coffeId === id)
-    if (cartIndex !== -1) {
-      setCart((state) =>
-        state.map((cartItem) => {
-          if (cartItem.coffeId === id) {
-            return { ...cartItem, quantity: cartItem.quantity + quantity }
-          }
-          return cartItem
-        }),
-      )
-    } else {
-      const newCartItem: CartItem = {
-        coffeId: id,
-        quantity,
-      }
-      setCart((state) => [...state, newCartItem])
-    }
+    dispatch(addToCartAction(id, quantity))
   }
+  // function addToCart(id: string, quantity: number) {
+  //   const cartIndex = cart.findIndex((item) => item.coffeId === id)
+  //   if (cartIndex !== -1) {
+  //     setCart((state) =>
+  //       state.map((cartItem) => {
+  //         if (cartItem.coffeId === id) {
+  //           return { ...cartItem, quantity: cartItem.quantity + quantity }
+  //         }
+  //         return cartItem
+  //       }),
+  //     )
+  //   } else {
+  //     const newCartItem: CartItem = {
+  //       coffeId: id,
+  //       quantity,
+  //     }
+  //     setCart((state) => [...state, newCartItem])
+  //   }
+  // }
 
   function increaseCoffeCartQuantity(id: string) {
-    setCart((state) =>
-      state.map((cartItem) => {
-        if (cartItem.coffeId === id) {
-          return { ...cartItem, quantity: cartItem.quantity + 1 }
-        }
-        return cartItem
-      }),
-    )
+    dispatch(increaseCoffeCartQuantityAction(id))
   }
+  // function increaseCoffeCartQuantity(id: string) {
+  //   setCart((state) =>
+  //     state.map((cartItem) => {
+  //       if (cartItem.coffeId === id) {
+  //         return { ...cartItem, quantity: cartItem.quantity + 1 }
+  //       }
+  //       return cartItem
+  //     }),
+  //   )
+  // }
 
   function decreaseCoffeCartQuantity(id: string) {
-    setCart((state) =>
-      state.map((cartItem) => {
-        if (cartItem.coffeId === id && cartItem.quantity > 1) {
-          return { ...cartItem, quantity: cartItem.quantity - 1 }
-        }
-        return cartItem
-      }),
-    )
+    dispatch(decreaseCoffeCartQuantityAction(id))
   }
+  // function decreaseCoffeCartQuantity(id: string) {
+  //   setCart((state) =>
+  //     state.map((cartItem) => {
+  //       if (cartItem.coffeId === id && cartItem.quantity > 1) {
+  //         return { ...cartItem, quantity: cartItem.quantity - 1 }
+  //       }
+  //       return cartItem
+  //     }),
+  //   )
+  // }
 
   function removeCoffeFromCart(id: string) {
-    setCart((state) => state.filter((cartItem) => cartItem.coffeId !== id))
+    dispatch(removeCoffeFromCartAction(id))
   }
 
+  // function removeCoffeFromCart(id: string) {
+  //   setCart((state) => state.filter((cartItem) => cartItem.coffeId !== id))
+  // }
+
   function createOrder(address: Address, payment: string) {
-    setOrder({
-      address,
-      orderItems: cart,
-      payment,
-    })
-    setCart([])
+    dispatch(createOrderAction(address, payment))
+    console.log('ORDER CREATED', order)
   }
+
+  // function createOrder(address: Address, payment: string) {
+  //   setOrder({
+  //     address,
+  //     orderItems: cart,
+  //     payment,
+  //   })
+  //   setCart([])
+  // }
 
   return (
     <CoffesContext.Provider
