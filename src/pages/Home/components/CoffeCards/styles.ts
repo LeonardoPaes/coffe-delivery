@@ -8,6 +8,7 @@ export const CoffeCardContainer = styled.div`
   max-width: 16rem;
   padding: 1.25rem 1.5rem;
   border-radius: 6px 36px;
+  margin: auto;
 
   background: ${(props) => props.theme['gray-200']};
 

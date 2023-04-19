@@ -29,7 +29,7 @@ export const HeaderContainer = styled.div`
   width: 100%;
   max-width: 1120px;
   padding: 2rem 1.5rem;
-
+  margin: auto;
   nav {
     display: flex;
     gap: 0.75rem;
