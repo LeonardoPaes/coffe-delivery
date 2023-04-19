@@ -41,6 +41,7 @@ export function OrderContent() {
                   }}
                 />
                 <button
+                  type="button"
                   onClick={() => {
                     removeCoffeFromCart(cartItem.coffeId)
                   }}
