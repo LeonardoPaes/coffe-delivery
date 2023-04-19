@@ -9,7 +9,10 @@ export const CheckoutContainer = styled.form`
   align-items: flex-start;
   gap: 2rem;
 
-  padding: 2.5rem 10rem;
+  /* padding: 2.5rem 10rem; */
+  width: 100%;
+  max-width: 1120px;
+  padding: 2.5rem 1.5rem;
 
   h3 {
     font-family: 'Baloo 2', sans-serif;
@@ -18,9 +21,9 @@ export const CheckoutContainer = styled.form`
     color: ${(props) => props.theme['gray-800']};
   }
 
-  @media (min-width: 1300px) {
+  /* @media (min-width: 1300px) {
     padding: 2.5rem 7rem;
-  }
+  } */
 `
 
 export const UserInfoContainer = styled.div`

@@ -8,6 +8,7 @@ export const CartContainer = styled.div`
   flex: 0;
 
   margin-top: 2.125rem;
+  margin: auto;
 
   & > div {
     font-size: 0.875rem;

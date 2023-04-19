@@ -9,17 +9,27 @@ export const HomeContainer = styled.main`
   display: flex;
 
   flex-direction: column;
+  align-items: center;
+
+  width: 100%;
 `
 
 export const BannerContainer = styled.div`
-  display: flex;
-
-  gap: 3.5rem;
-
   background-image: url(${backgroundCoffe});
   background-repeat: no-repeat;
   background-size: cover;
-  padding: 5.75rem 10rem;
+  width: 100%;
+`
+
+export const BannerContent = styled.div`
+  display: flex;
+
+  gap: 3.5rem;
+  /* padding: 5.75rem 10rem; */
+  max-width: 1120px;
+  margin: auto;
+  padding: 5.75rem 1.5rem;
+  width: 100%;
 
   div {
     strong {
@@ -48,9 +58,9 @@ export const BannerContainer = styled.div`
     width: 44%;
   }
 
-  @media (min-width: 1300px) {
+  /* @media (min-width: 1300px) {
     padding: 5.75rem 7rem;
-  }
+  } */
 `
 
 export const AdvantagesContainer = styled.div`
@@ -101,8 +111,11 @@ export const Advantage = styled.small<AdvantageProps>`
 `
 
 export const ProductsContainer = styled.div`
-  padding: 0rem 10rem;
+  /* padding: 0rem 10rem; */
   /* padding: 0rem 10%; */
+  width: 100%;
+  max-width: 1120px;
+  padding: 0 1.5rem;
 
   h1 {
     font-family: 'Baloo 2', sans-serif;
@@ -113,7 +126,8 @@ export const ProductsContainer = styled.div`
 
   & > div {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
+    /* grid-template-columns: 1fr 1fr 1fr 1fr; */
+    grid-template-columns: repeat(auto-fill, minmax(235px, 1fr));
 
     grid-column-gap: 2rem;
     grid-row-gap: 2.5rem;
@@ -121,7 +135,7 @@ export const ProductsContainer = styled.div`
     padding: 3.375rem 0;
   }
 
-  @media (max-width: 1350px) {
+  /* @media (max-width: 1350px) {
     padding: 0rem 7rem;
-  }
+  } */
 `
